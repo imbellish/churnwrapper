@@ -17,6 +17,16 @@ class ChurnOver(object):
                 setattr(self, key, value)
 
     def call(self):
+        base_url = "http://churn.rocks/churnover/"
+        headers = {
+            # currently need no headers
+        }
         data = json.dumps(self.__dict__)
+        request = requests.request(
+            "POST", 
+            base_url, 
+            data=data
+            )
+        self.response = request.json()
         return data
 

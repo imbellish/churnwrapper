@@ -19,8 +19,8 @@ class TestChurnOver(unittest.TestCase):
 
     def test_successful_pass_to_json(self):
         query = {
-            "entitystatus":'Delinquent', 
-            "principalzipcode": '80203'
+            "agentfirstname":'Ian', 
+            "agentlastname": 'Bellamy'
 	    }
         churn = ChurnOver(**query)
         #self.assertTrue(churn.is_valid())
@@ -48,11 +48,13 @@ class TestChurnOver(unittest.TestCase):
         which is the json response from churn.rocks
         """
         query = {
-            "entitystatus":'Delinquent', 
-            "principalzipcode": '80203'
+            "agentfirstname":"Ian",
+            "agentlastname": "Bellamy" 
         }
         churn = ChurnOver(**query)
-        self.assertTrue(hasattr(churn, "response"), "ChurnOver object has no response attribute")
+        churn.call()
+        self.assertTrue(hasattr(churn, "response"), "ChurnOver did not assign response attr")
+        print(churn.response)
 
 
 if __name__ == "__main__":
