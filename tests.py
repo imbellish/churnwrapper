@@ -17,17 +17,6 @@ class TestChurnOver(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_successful_pass_to_json(self):
-        query = {
-            "agentfirstname":'Ian', 
-            "agentlastname": 'Bellamy'
-	    }
-        churn = ChurnOver(**query)
-        #self.assertTrue(churn.is_valid())
-        observed = json.loads(churn.call())
-        expected = query
-        self.assertEqual(observed, expected)
-
     def test_invalid_key(self):
         query = {
             'foo': 'bar'
